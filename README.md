@@ -1,68 +1,10 @@
 # Mesin-Kasir-Sederhana
 Program mesin kasir sederhana ini merupakan tugas asistensi praktikum dasar pemrograman ITS dengan kode P1. Program ini menggunakan input dari user agar dapat bekerja
 
-#include <stdio.h>
+## Input dan Output
+Program ini bergantung kepada input yang dimasukkan oleh pengguna yang dimana berupa berapa banyak jenis barang yang ada, nama barang, banyak barang, harga barang, dan diskon yang berlaku. Output dari kode ini akan menampilkan jenis barang, berapa banyak barang yang dibeli, harga, harga sebelum diskon, serta harga setelah ada diskon.
 
-#define MAX_ITEMS 20 //Mendefinisikan konstanta yang disebut (MAX_ITEMS) yang berupa item maksimal yang bisa ditampilkan
+## Isi Pemrograman Secara Singkat
+Mendefinisikan konstanta yang disebut (MAX_ITEMS) yang berupa item maksimal yang bisa ditampilkan. Mendefinisikan sebuah struktur baru yaitu (Item) yang memiliki tiga atribut yaitu nama, harga, dan jumlah. Membuat semacam deklarasi struk yang akan dibuat, disini akan menerima nama dari item (menggunakan array), jumlah item (count), dan juga diskon yang akan diberikan. Menginisialisasi sebuah variabel total untuk menyimpan total harga, serta menginisialisasi sebuah loop untuk setiap item (i). Menambahkan sebuah subtotal dan menghitung harga subtotal untuk setiap harga sebuah item dikalikan dengan banyaknya item yang akan dibeli, lalu menambahkan subtotal ke total keseluruhann. Tentukan apakah ada diskon atau tidak dengan fungsi if else.
 
-typedef struct { //Mendefinisikan sebuah struktur baru yaitu (Item) yang memiliki tiga atribut yaitu nama, harga, dan jumlah
-    char nama[40];
-    float harga;
-    int jumlah;
-} Item; //Nama dari struktur baru yaitu Item
-
-void tampilkanStruk(Item items[], int count, float diskon) { //Membuat semacam deklarasi struk yang akan dibuat, disini akan menerima nama dari item (menggunakan array), jumlah item (count), dan juga diskon yang akan diberikan
-    float total = 0; //Menginisialisasi sebuah variabel total untuk menyimpan total harga
-    printf("========= Struk Belanja ========= \n");
-    printf("--------- Toko Manusia ----------\n");
-    for (int i = 0; i < count; i++) { //Menginisialisasi sebuah loop untuk setiap item (i)
-        float subtotal = items[i].harga * items[i].jumlah; //Menambahkan sebuah subtotal dan menghitung harga subtotal untuk setiap harga sebuah item dikalikan dengan banyaknya item yang akan dibeli
-        printf("%s (x%d): %.2f\n", items[i].nama, items[i].jumlah, subtotal);  //Print ini untuk menampilkan nama item, berapa banyak item nya beserta harga subtotal
-        total += subtotal; //Menambahkan subtotal ke total keseluruhan
-    }
-    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= \n");
-    printf("Total Sebelum Diskon : %.2f \n", total);
-    if (diskon > 0) { //Fungsi if disini digunakan apabila terdapat diskon
-        float totalDiskon = total * (diskon / 100); //Disini karena diskon berupa persen maka akan di buat totaldiskon adalah total dikali diskon/100
-        total -= totalDiskon; //Dinyatakan bahwa total ketika ada diskon adalah total dikurangi dengan totaldiskon
-        printf("Total Diskon\t: %.2f%% \n", diskon);
-        printf("Total Setelah Diskon : %.2f \n", total);
-    } else { //Fungsi else disini akan digunakan apabila tidak terdapat diskon atau diskonnya 0
-        printf("Tidak ada diskon.\n");
-        printf("Total Setelah Diskon : %.2f\n", total);
-    }
-    printf("=================================");
-}
-
-//Disini fungsi utama program akan dijalankan
-int main() {
-    Item items[MAX_ITEMS]; 
-    int count = 0;
-    float diskon;
-
-    printf("Masukkan jumlah barang (maksimal %d): ", MAX_ITEMS);
-    scanf("%d", &count);
-
-    if (count == 0){
-        printf ("Barangnya kok gak ada???");
-    }
-
-    else {
-        for (int i = 0; i < count; i++) {
-            printf("Masukkan nama barang ke-%d \t : ", i + 1);
-            scanf("%s", items[i].nama);
-            printf("Masukkan harga barang ke-%d \t : ", i + 1);
-            scanf("%f", &items[i].harga);
-            printf("Masukkan jumlah barang ke-%d \t : ", i + 1);
-            scanf("%d", &items[i].jumlah);
-
-        }
-
-        printf("Masukkan diskon (dalam persen, 0 jika tidak ada): ");
-        scanf("%f", &diskon);
-
-        tampilkanStruk(items, count, diskon);
-    }
-
-    return 0;
-}
+Lalu masuk ke dalam fungsi main. Pada fungsi main akan mengprint suatu kalimat yang menyuruh pengguna untuk memasukkan berapa jenis barang yang mereka punya. Di sini akan terdapat loop sesuai dengan berapa banyak jenis barang yang pengguna masukkan. Pada fungsi ini juga pengguna di minta untuk memasukkan besar diskon. Ketika hal - hal diatas baris kode nya selesai di eksekusi, maka akan dipanggil fungsi struk yang akan menampilkan struk yang sudah diolah.
